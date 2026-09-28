@@ -60,7 +60,7 @@ body{background:#111;color:#fff;font-family:Arial;text-align:center;padding:20px
 .card{max-width:420px;margin:auto;background:#222;padding:25px;border-radius:20px}
 input{width:85%;height:48px;margin:8px;font-size:20px;border-radius:10px;padding:0 10px}
 button{width:90%;min-height:58px;margin:8px;font-size:20px;border:none;border-radius:12px;color:#fff}
-.blue{background:#007bff}
+.blue{background:#28a745}
 .black{background:#000;border:1px solid #555}
 .gray{background:#444}
 a{text-decoration:none}
@@ -120,8 +120,8 @@ String updatePage() {
 body{background:#111;color:#fff;font-family:Arial;text-align:center;padding:20px}
 .card{max-width:420px;margin:auto;background:#222;padding:25px;border-radius:20px}
 input{width:90%;margin:20px 0;font-size:17px}
-button{width:90%;min-height:58px;font-size:20px;color:#fff;background:#007bff;border:none;border-radius:12px}
-a{color:#5caaff}
+button{width:90%;min-height:58px;font-size:20px;color:#fff;background:#28a745;border:none;border-radius:12px}
+a{color:#28a745}
 </style>
 </head>
 <body>
