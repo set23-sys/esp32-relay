@@ -1,0 +1,45 @@
+name: Build ESP32 firmware
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "sketch/**"
+      - ".github/workflows/build.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install ESP32 core
+        run: |
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32@3.3.12
+
+      - name: Compile firmware
+        run: |
+          mkdir -p build
+          arduino-cli compile             --fqbn esp32:esp32:esp32             --output-dir build             sketch/ESP32_Relay
+
+      - name: Prepare OTA binary
+        run: |
+          cp build/ESP32_Relay.ino.bin build/ESP32_Relay_OTA.bin
+
+      - name: Upload firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ESP32_Relay_Firmware
+          path: |
+            build/ESP32_Relay_OTA.bin
+            build/ESP32_Relay.ino.bin
+          if-no-files-found: error
